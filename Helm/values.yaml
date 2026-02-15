@@ -1,6 +1,6 @@
 #deployment.yaml
 #namespace: devops
-replicaCount: 2
+replicaCount: 1
 image:
   repository: 196530534659.dkr.ecr.ap-south-1.amazonaws.com/bala-docker-repo
   tag: latest
