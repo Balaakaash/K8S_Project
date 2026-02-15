@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         AWS_REGION = 'ap-south-1' // Your AWS region
-        ECR_REPO = '881490104063.dkr.ecr.us-east-1.amazonaws.com/my_pvt_repo' // Your ECR repository URI
+        ECR_REPO = '196530534659.dkr.ecr.ap-south-1.amazonaws.com/bala-docker-repo' // Your ECR repository URI
         IMAGE_TAG = "v${BUILD_NUMBER}" // Dynamic version based on build number
         EKS_CLUSTER_NAME = 'bala_cluster' // Replace with your EKS cluster name
         KUBECONFIG_PATH = '/opt/kube/config' // Path to kubeconfig file
@@ -12,7 +12,7 @@ pipeline {
         stage('SCM checkout') {
             steps {
                 script {
-                    git branch: 'main', credentialsId: 'git-cred', url: 'https://github.com/VenkatVGS/K8s_Real_Project.git'
+                    git branch: 'main', credentialsId: 'git-cred', url: 'https://github.com/Balaakaash/K8S_Project.git'
                 }
             }
         }
@@ -49,7 +49,7 @@ pipeline {
                 script {
                     withCredentials([[
                         $class: 'AmazonWebServicesCredentialsBinding',
-                        credentialsId: 'aws-crendentails-vgs' // Your Jenkins AWS credentials ID
+                        credentialsId: 'aws-credentials-bala' // Your Jenkins AWS credentials ID
                     ]]) {
                         def fullImageName = "${ECR_REPO}:${IMAGE_TAG}"
                         
@@ -70,7 +70,7 @@ pipeline {
                 script {
                     withCredentials([[
                         $class: 'AmazonWebServicesCredentialsBinding',
-                        credentialsId: 'aws-crendentails-vgs' // Replace with your Jenkins AWS credentials ID
+                        credentialsId: 'aws-credentials-bala' // Replace with your Jenkins AWS credentials ID
                     ]]) {
                         
                         // Set KUBECONFIG environment variable
