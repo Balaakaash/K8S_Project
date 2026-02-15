@@ -93,7 +93,7 @@ pipeline {
                         helm package ${HELM_CHART_PATH}
                         pwd
                         #helm install myrocket /var/lib/jenkins/workspace/project/myrocketapp-0.1.0.tgz --kubeconfig /opt/kube/config
-                        helm upgrade --install myrocket /var/lib/jenkins/workspace/rocket/myrocketapp-0.1.0.tgz \
+                        helm upgrade --install myrocket /var/lib/jenkins/workspace/deploy-pipeline/myrocketapp-0.1.0.tgz \
                         --set image.tag=v${BUILD_NUMBER} 
                         """
                         
